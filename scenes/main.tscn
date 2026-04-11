@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://brcivw2inplpf"]
 
-[ext_resource type="PackedScene" uid="uid://x3lqen7ummma" path="res://scenes/field.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" path="res://scenes/field.tscn" id="2_sugp2"]
 
 [node name="Node2D" type="Node2D" unique_id=622287307]
 
 [node name="Field" parent="." unique_id=1917929457 instance=ExtResource("2_sugp2")]
+
+[node name="Child" parent="." unique_id=1883023373 instance=ExtResource("2_0wfyh")]
+position = Vector2(273, 459)
