@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://brcivw2inplpf"]
+
+[ext_resource type="Texture2D" uid="uid://cgyhnbmphrm4y" path="res://sprites/bg/football-field.png" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
+
+[node name="Node2D" type="Node2D" unique_id=622287307]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=857488649]
+position = Vector2(570, 254.62497)
+scale = Vector2(0.97357553, 0.89687496)
+texture = ExtResource("1_o5qli")
+
+[node name="Child" parent="." unique_id=1347655538 instance=ExtResource("2_0wfyh")]
+position = Vector2(304, 459)
