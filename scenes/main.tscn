@@ -1,45 +1,7 @@
 [gd_scene format=3 uid="uid://brcivw2inplpf"]
 
-[ext_resource type="Texture2D" uid="uid://cgyhnbmphrm4y" path="res://sprites/bg/football-field.png" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5qli"]
+[ext_resource type="PackedScene" uid="uid://x3lqen7ummma" path="res://scenes/field.tscn" id="2_sugp2"]
 
 [node name="Node2D" type="Node2D" unique_id=622287307]
 
-[node name="Background" type="Sprite2D" parent="." unique_id=857488649]
-position = Vector2(570, 254.62497)
-scale = Vector2(0.97357553, 0.89687496)
-texture = ExtResource("1_o5qli")
-
-[node name="WorldBoundaries" type="Node2D" parent="." unique_id=1283614241]
-
-[node name="Top" type="StaticBody2D" parent="WorldBoundaries" unique_id=669418900]
-position = Vector2(587, 350)
-rotation = 3.1415927
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Top" unique_id=201025634]
-shape = SubResource("WorldBoundaryShape2D_o5qli")
-
-[node name="Right" type="StaticBody2D" parent="WorldBoundaries" unique_id=548767416]
-position = Vector2(1154, 411)
-rotation = 4.712389
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Right" unique_id=1849392007]
-shape = SubResource("WorldBoundaryShape2D_o5qli")
-
-[node name="Left" type="StaticBody2D" parent="WorldBoundaries" unique_id=1225405383]
-position = Vector2(-15, 391)
-rotation = 1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Left" unique_id=1780067162]
-shape = SubResource("WorldBoundaryShape2D_o5qli")
-
-[node name="Bottom" type="StaticBody2D" parent="WorldBoundaries" unique_id=1815207920]
-position = Vector2(599, 646)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Bottom" unique_id=1416516404]
-shape = SubResource("WorldBoundaryShape2D_o5qli")
-
-[node name="Child" parent="." unique_id=1883023373 instance=ExtResource("2_0wfyh")]
-position = Vector2(413, 413)
+[node name="Field" parent="." unique_id=1917929457 instance=ExtResource("2_sugp2")]

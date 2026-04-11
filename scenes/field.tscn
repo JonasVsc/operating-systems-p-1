@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://x3lqen7ummma"]
+
+[ext_resource type="Texture2D" uid="uid://cgyhnbmphrm4y" path="res://sprites/bg/football-field.png" id="1_6pmjc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ttalb"]
+
+[node name="Field" type="Node2D" unique_id=1917929457]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1382740602]
+position = Vector2(570, 254.62497)
+scale = Vector2(0.97357553, 0.89687496)
+texture = ExtResource("1_6pmjc")
+
+[node name="WorldBoundaries" type="Node2D" parent="." unique_id=1759426190]
+
+[node name="Top" type="StaticBody2D" parent="WorldBoundaries" unique_id=1301665613]
+position = Vector2(587, 350)
+rotation = 3.1415927
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Top" unique_id=707038877]
+shape = SubResource("WorldBoundaryShape2D_ttalb")
+
+[node name="Right" type="StaticBody2D" parent="WorldBoundaries" unique_id=55201621]
+position = Vector2(1154, 411)
+rotation = 4.712389
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Right" unique_id=771570285]
+shape = SubResource("WorldBoundaryShape2D_ttalb")
+
+[node name="Left" type="StaticBody2D" parent="WorldBoundaries" unique_id=1870205092]
+position = Vector2(-15, 391)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Left" unique_id=735485314]
+shape = SubResource("WorldBoundaryShape2D_ttalb")
+
+[node name="Bottom" type="StaticBody2D" parent="WorldBoundaries" unique_id=1934597850]
+position = Vector2(599, 646)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Bottom" unique_id=972012935]
+shape = SubResource("WorldBoundaryShape2D_ttalb")
