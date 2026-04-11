@@ -1,7 +1,64 @@
 [gd_scene format=3 uid="uid://cf5456limbntq"]
 
-[ext_resource type="Texture2D" uid="uid://bpjewykjfnupw" path="res://icon.svg" id="1_8ggnl"]
-[ext_resource type="Script" uid="uid://duyrdwbr2jju0" path="res://scenes/child.gd" id="1_xoh2m"]
+[ext_resource type="Script" path="res://scenes/child.gd" id="1_xoh2m"]
+[ext_resource type="Texture2D" uid="uid://dwgjw1tf541ti" path="res://sprites/children/children1bg.png" id="2_xoh2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ejsn"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(0, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qapw4"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(84, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rl2d"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(168, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kefvm"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(252, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f5vm"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(336, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kin3o"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(420, 0, 84, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5o6f"]
+atlas = ExtResource("2_xoh2m")
+region = Rect2(504, 0, 84, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkff2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ejsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qapw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rl2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kefvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f5vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kin3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5o6f")
+}],
+"loop": true,
+"name": &"running",
+"speed": 9.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggnl"]
 size = Vector2(124, 121)
@@ -9,8 +66,11 @@ size = Vector2(124, 121)
 [node name="Child" type="CharacterBody2D" unique_id=1883023373]
 script = ExtResource("1_xoh2m")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=729689357]
-texture = ExtResource("1_8ggnl")
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1423880160]
+sprite_frames = SubResource("SpriteFrames_kkff2")
+animation = &"running"
+autoplay = "running"
+frame_progress = 0.5283041
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1781625924]
 position = Vector2(-1, -0.5)
