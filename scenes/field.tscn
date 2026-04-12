@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://x3lqen7ummma"]
+[gd_scene format=3 uid="uid://dc6tnldlyfkgu"]
 
 [ext_resource type="Texture2D" uid="uid://cgyhnbmphrm4y" path="res://sprites/bg/football-field.png" id="1_6pmjc"]
 
@@ -18,6 +18,7 @@ position = Vector2(587, 350)
 rotation = 3.1415927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Top" unique_id=707038877]
+position = Vector2(19.000013, 150)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
 
 [node name="Right" type="StaticBody2D" parent="WorldBoundaries" unique_id=55201621]
@@ -38,4 +39,18 @@ shape = SubResource("WorldBoundaryShape2D_ttalb")
 position = Vector2(599, 646)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Bottom" unique_id=972012935]
+position = Vector2(-23, -22)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
+
+[node name="LeftGoalpost" type="StaticBody2D" parent="." unique_id=925378580]
+position = Vector2(82, 347)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LeftGoalpost" unique_id=884365309]
+polygon = PackedVector2Array(-12, -17, -28, -19, -46, -19, -95, 18, -101, 73, -57, 73, -12, 31)
+
+[node name="RightGoalpost2" type="StaticBody2D" parent="." unique_id=303337519]
+position = Vector2(82, 347)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="RightGoalpost2" unique_id=1774041857]
+position = Vector2(1042, 4)
+polygon = PackedVector2Array(27, 12, -22, -24, -57, -24, -56, 29, -37, 50, -11, 73, 39, 70)
