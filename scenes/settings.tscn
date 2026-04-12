@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://br0b2wpmqrr1j"]
+
+[ext_resource type="Script" uid="uid://yk2i14kq4gu8" path="res://scripts/settings.gd" id="1_5p8wc"]
+
+[node name="Settings" type="Control" unique_id=1692165131]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5p8wc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1586176406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10917712, 0.119572155, 0.0952955, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2107591968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1782432419]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=731259555]
+layout_mode = 2
+text = "Sistemas Operacionais: Projeto 1 "
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1875444027]
+layout_mode = 2
+
+[node name="HBallsContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1609725250]
+layout_mode = 2
+
+[node name="BallsLabel" type="Label" parent="CenterContainer/VBoxContainer/HBallsContainer" unique_id=347447978]
+layout_mode = 2
+text = "Bolas iniciais:"
+
+[node name="BallsInput" type="SpinBox" parent="CenterContainer/VBoxContainer/HBallsContainer" unique_id=110750630]
+layout_mode = 2
+
+[node name="HBasketContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2048633679]
+layout_mode = 2
+
+[node name="BasketLabel" type="Label" parent="CenterContainer/VBoxContainer/HBasketContainer" unique_id=1547896749]
+layout_mode = 2
+text = "Capacidade do cesto:"
+
+[node name="BasketInput" type="SpinBox" parent="CenterContainer/VBoxContainer/HBasketContainer" unique_id=2119283672]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1311333453]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2012286186]
+layout_mode = 2
+text = "Start"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
