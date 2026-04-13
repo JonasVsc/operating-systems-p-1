@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="operating-systems-p1"
-run/main_scene="uid://br0b2wpmqrr1j"
+run/main_scene="uid://brcivw2inplpf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SimLogger="*uid://dhe6ml0ys2vg2"
 Simulation="*uid://c00wjc0wrxu0v"
+SimLogger="*uid://dhe6ml0ys2vg2"
 
 [display]
 
