@@ -1,75 +1,109 @@
 [gd_scene format=3 uid="uid://cf5456limbntq"]
 
-[ext_resource type="Texture2D" uid="uid://dwgjw1tf541ti" path="res://sprites/children/children1bg.png" id="2_xoh2m"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ejsn"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(0, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qapw4"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(84, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3rl2d"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(168, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kefvm"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(252, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f5vm"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(336, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kin3o"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(420, 0, 84, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5o6f"]
-atlas = ExtResource("2_xoh2m")
-region = Rect2(504, 0, 84, 92)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kkff2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3ejsn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qapw4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3rl2d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kefvm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4f5vm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kin3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y5o6f")
-}],
-"loop": true,
-"name": &"running",
-"speed": 9.0
-}]
+[ext_resource type="Texture2D" uid="uid://cryjl1qv3dx7q" path="res://sprites/children/child-m-spritesheet.png" id="1_8ggnl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggnl"]
 size = Vector2(124, 121)
 
+[sub_resource type="Animation" id="Animation_8ggnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xoh2m"]
+resource_name = "idle"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.030729901, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.19999999, 0.23333335, 0.26666668, 0.29908168, 0.3, 0.332415, 0.33333334, 0.36574835, 0.39908168),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 16, 18, 19, 17, 16, 18, 17, 16, 17, 18, 16, 19, 18, 19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ejsn"]
+_data = {
+&"RESET": SubResource("Animation_8ggnl"),
+&"idle": SubResource("Animation_xoh2m")
+}
+
 [node name="Child" type="CharacterBody2D" unique_id=1883023373]
 
-[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1423880160]
-sprite_frames = SubResource("SpriteFrames_kkff2")
-animation = &"running"
-autoplay = "running"
-frame_progress = 0.5283041
+[node name="Texture" type="Sprite2D" parent="." unique_id=749151514]
+position = Vector2(0, -16)
+texture = ExtResource("1_8ggnl")
+hframes = 4
+vframes = 8
+frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1781625924]
+visible = false
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_8ggnl")
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1866931237]
+libraries/ = SubResource("AnimationLibrary_3ejsn")
