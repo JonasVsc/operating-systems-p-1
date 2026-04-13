@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dn6k38fuwlmiu"]
+
+[ext_resource type="Script" uid="uid://b38km3dqdfrx0" path="res://scripts/child_form.gd" id="1_hc06i"]
+
+[node name="ChildForm" type="Window" unique_id=1219845451]
+oversampling_override = 1.0
+title = "Create child"
+position = Vector2i(0, 36)
+size = Vector2i(361, 204)
+visible = false
+script = ExtResource("1_hc06i")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=367429332]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1021974000]
+layout_mode = 2
+
+[node name="FormContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2064396477]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ChildName" type="HBoxContainer" parent="PanelContainer/VBoxContainer/FormContainer" unique_id=1063270386]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FormContainer/ChildName" unique_id=657189294]
+layout_mode = 2
+text = "Nome:"
+
+[node name="ChildNameInput" type="LineEdit" parent="PanelContainer/VBoxContainer/FormContainer/ChildName" unique_id=2016960521]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChildTb" type="HBoxContainer" parent="PanelContainer/VBoxContainer/FormContainer" unique_id=723114317]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FormContainer/ChildTb" unique_id=528133980]
+layout_mode = 2
+text = "Tempo brincadeira (s):"
+
+[node name="ChildTbInput" type="SpinBox" parent="PanelContainer/VBoxContainer/FormContainer/ChildTb" unique_id=2094948985]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 999.0
+value = 1.0
+
+[node name="ChildTd" type="HBoxContainer" parent="PanelContainer/VBoxContainer/FormContainer" unique_id=1960790130]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FormContainer/ChildTd" unique_id=795598560]
+layout_mode = 2
+text = "Tempo descanso (s):"
+
+[node name="ChildTdInput" type="SpinBox" parent="PanelContainer/VBoxContainer/FormContainer/ChildTd" unique_id=1780519018]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 999.0
+value = 1.0
+
+[node name="ChildHasBall" type="HBoxContainer" parent="PanelContainer/VBoxContainer/FormContainer" unique_id=664782339]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FormContainer/ChildHasBall" unique_id=895339813]
+layout_mode = 2
+text = "Tem bola?"
+
+[node name="ChildHasBallCheckbox" type="CheckBox" parent="PanelContainer/VBoxContainer/FormContainer/ChildHasBall" unique_id=405962868]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=806688858]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer/OptionsContainer" unique_id=1022970828]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="SubmitButton" type="Button" parent="PanelContainer/VBoxContainer/OptionsContainer" unique_id=635217311]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/OptionsContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/OptionsContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

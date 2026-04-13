@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SimLogger="*uid://dhe6ml0ys2vg2"
 Simulation="*uid://c00wjc0wrxu0v"
 
 [physics]

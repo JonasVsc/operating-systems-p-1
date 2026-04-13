@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bwp202u4yw1eg"]
+
+[ext_resource type="Script" uid="uid://d4jpx8u0ng703" path="res://scripts/control_panel.gd" id="1_432tf"]
+[ext_resource type="PackedScene" uid="uid://dn6k38fuwlmiu" path="res://scenes/child-form.tscn" id="2_v5pkj"]
+
+[node name="ControlPanel" type="Window" unique_id=278342775]
+oversampling_override = 1.0
+title = "ControlPanel"
+position = Vector2i(0, 36)
+size = Vector2i(180, 57)
+script = ExtResource("1_432tf")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=313448455]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1912020671]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="CreateChildButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=807088989]
+layout_mode = 2
+text = "Create child"
+
+[node name="ChildQuantityLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=426326788]
+layout_mode = 2
+text = "Childs: 0"
+vertical_alignment = 1
+
+[node name="ChildForm" parent="." unique_id=1219845451 instance=ExtResource("2_v5pkj")]
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/CreateChildButton" to="." method="_on_create_child_button_pressed"]

@@ -1,5 +1,7 @@
 extends Node
 
+signal new_children(id)
+
 var available_balls_semaphore: Semaphore;
 var available_space_semaphore: Semaphore;
 var basket_mutex: Mutex;
@@ -7,6 +9,11 @@ var basket_mutex: Mutex;
 var basket_count: int = 0;
 var basket_capacity: int = 1;
 var children_data: Array = [];
+var children_id: int = 0:
+	set(valor):
+		children_id = valor
+		new_children.emit(children_id)
+
 var running: bool = true;
 
 var ui_mutex: Mutex;
@@ -15,24 +22,31 @@ var ui_mutex: Mutex;
 func _ready():
 	ui_mutex = Mutex.new();
 	basket_mutex = Mutex.new();
-	
-	print("Simulation is ready");
+	print("Simulation is ready to start");
 
 
-func initialize() -> void:
-	print("Simulation initialized");
-	
-	available_balls_semaphore  = Semaphore.new();
-	available_space_semaphore = Semaphore.new();
-	
-	for i in range(basket_capacity):
-		available_space_semaphore.post();
+func initialize(p_basket_capacity: int, p_initial_balls: int) -> void:
+	basket_capacity = p_basket_capacity
+	basket_count = p_initial_balls  # bolas já no cesto no início
+
+	available_balls_semaphore  = Semaphore.new()
+	available_space_semaphore = Semaphore.new()
+
+	# Espaços livres = capacidade - bolas já presentes
+	for i in range(basket_capacity - p_initial_balls):
+		available_space_semaphore.post()
+
+	# Bolas já disponíveis no cesto
+	for i in range(p_initial_balls):
+		available_balls_semaphore.post()
+		
+	SimLogger.log("Simulação iniciada. Cesto: %d/%d" % [basket_count, basket_capacity])
 		
 
 
-func create_child(id, child_name: String, has_ball: bool, Tb_ms: float, Td_ms: float):
+func create_child(child_name: String, has_ball: bool, Tb_ms: float, Td_ms: float):
 	var data = {
-		"id": id, "name": child_name,
+		"id": children_id, "name": child_name,
 		"has_ball": has_ball,
 		"Tb": Tb_ms, "Td": Td_ms,
 		"status": "IDLE",
@@ -44,86 +58,65 @@ func create_child(id, child_name: String, has_ball: bool, Tb_ms: float, Td_ms: f
 
 	var thread = Thread.new();
 	thread.start(_child_thread.bind(data));
-
-
-func _child_thread(data: Dictionary):
-	if data.has_ball:
-		_go_play(data)
-	else:
-		_go_wait_ball(data)
-
-
-func _go_wait_ball(data):
-	_set_status(data, "AG_CESTO")
-	_log(data, "Aguardando bola no cesto...")
-
-	available_space_semaphore.wait()
-
-	basket_mutex.lock()
-	basket_count -= 1
-	basket_mutex.unlock()
-	available_space_semaphore.post()
-
-	_log(data, "Pegou uma bola!")
-	_go_play(data)
-
-
-func _go_play(data):
-	_set_status(data, "BRINCANDO")
-	_log(data, "Brincando com a bola (%dms)" % int(data.Tb))
-	_busy_wait(data.Tb)
-	_go_wait_space(data)
-
-
-func _go_wait_space(data):
-	_set_status(data, "AG_ESPACO")
-	_log(data, "Aguardando espaço no cesto...")
-
-	available_space_semaphore.wait()
-
-	basket_mutex.lock()
-	basket_count += 1
-	basket_mutex.unlock()
-	available_balls_semaphore.post() 
-
-	_log(data, "Colocou a bola no cesto.")
-	_go_rest(data)
-
-
-func _go_rest(data):
-	_set_status(data, "DESCANSANDO")
-	_log(data, "Descansando (%dms)" % int(data.Td))
-	_busy_wait(data.Td)
 	
-	if running:
-		_go_wait_ball(data)
+	var log_msg = "Nova Criança: ID: %d, Name: %s, Tb: %02ds, Td: %02ds, Has_Ball: %s" % [children_id, child_name, Tb_ms / 1000, Td_ms  / 1000, "Yes" if has_ball else "No"];
+	SimLogger.log(log_msg);
+	children_id += 1;
 
 
-func _busy_wait(ms: float):
-	var start = Time.get_ticks_msec()
+func _child_thread(data: Dictionary) -> void:
+	var has_ball: bool = data["has_ball"]
+
+	while running:
+		if has_ball:
+			_set_status(data, "BRINCANDO")
+			SimLogger.log("%s: Começou a brincar com a bola." % data["name"])
+			_busy_wait(data["Tb"])
+
+			_set_status(data, "AG_ESPACO")
+			SimLogger.log("%s: Tentando colocar a bola no cesto..." % data["name"])
+			available_space_semaphore.wait()
+
+			basket_mutex.lock()
+			basket_count += 1
+			var count_snap = basket_count
+			basket_mutex.unlock()
+
+			available_balls_semaphore.post()
+			SimLogger.log("%s: Colocou a bola no cesto. [Cesto: %d/%d]" % [data["name"], count_snap, basket_capacity])
+			has_ball = false
+
+			_set_status(data, "DESCANSANDO")
+			SimLogger.log("%s: Descansando..." % data["name"])
+			_busy_wait(data["Td"])
+
+		else:
+			_set_status(data, "AG_CESTO")
+			SimLogger.log("%s: Aguardando uma bola no cesto..." % data["name"])
+			available_balls_semaphore.wait()
+
+			basket_mutex.lock()
+			basket_count -= 1
+			var count_snap = basket_count
+			basket_mutex.unlock()
+
+			available_space_semaphore.post()
+			SimLogger.log("%s: Pegou uma bola do cesto! [Cesto: %d/%d]" % [data["name"], count_snap, basket_capacity])
+			has_ball = true
+
+	_set_status(data, "IDLE")
+	SimLogger.log("%s: Thread encerrada." % data["name"])
+
+
+func _busy_wait(ms: float) -> void:
+	var start: int = Time.get_ticks_msec()
 	while Time.get_ticks_msec() - start < ms:
+		if not running:
+			return
 		OS.delay_usec(500)
 
 
-func _set_status(data: Dictionary, status: String):
+func _set_status(data: Dictionary, status: String) -> void:
 	ui_mutex.lock()
-	data.status = status
+	data["status"] = status
 	ui_mutex.unlock()
-
-
-func _log(data: Dictionary, msg: String):
-	var entry = "[%s] %s: %s" % [
-		Time.get_time_string_from_system(), data.name, msg
-	]
-	ui_mutex.lock()
-	data.log.push_back(entry)
-	if data.log.size() > 50:
-		data.log.pop_front()
-	ui_mutex.unlock()
-
-
-func shutdown():
-	running = false
-	for i in range(children_data.size()):
-		available_balls_semaphore.post()
-		available_space_semaphore.post()

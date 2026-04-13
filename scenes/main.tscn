@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bcgnhveis3bh2" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://x3lqen7ummma" path="res://scenes/field.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bwp202u4yw1eg" path="res://scenes/control-panel.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://ds17vh5xbvtiv" path="res://scenes/logger.tscn" id="5_tbgi4"]
 
 [node name="Node2D" type="Node2D" unique_id=622287307]
 script = ExtResource("1_sugp2")
@@ -11,3 +13,8 @@ script = ExtResource("1_sugp2")
 
 [node name="Child" parent="." unique_id=1883023373 instance=ExtResource("2_0wfyh")]
 position = Vector2(68, 533)
+
+[node name="ControlPanel" parent="." unique_id=278342775 instance=ExtResource("4_jyhfs")]
+initial_position = 1
+
+[node name="Logger" parent="." unique_id=1858505231 instance=ExtResource("5_tbgi4")]
