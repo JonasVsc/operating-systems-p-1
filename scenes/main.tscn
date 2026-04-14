@@ -8,29 +8,32 @@
 [ext_resource type="Texture2D" uid="uid://cph555iwelon4" path="res://sprites/basket-ball/balls.png" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://pp50ypcgoxya" path="res://scenes/basket_ball.gd" id="7_o6xl0"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(0, 123, 135, 138)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
 atlas = ExtResource("6_tefeu")
-region = Rect2(0, 123, 135, 134)
+region = Rect2(135, 123, 135, 138)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("6_tefeu")
-region = Rect2(135, 123, 135, 134)
+region = Rect2(270, 123, 135, 138)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
 atlas = ExtResource("6_tefeu")
-region = Rect2(270, 123, 135, 134)
+region = Rect2(405, 123, 135, 138)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("6_tefeu")
-region = Rect2(405, 123, 135, 134)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
-atlas = ExtResource("6_tefeu")
-region = Rect2(540, 123, 135, 134)
+region = Rect2(540, 123, 135, 138)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eb6dy"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefeu")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o6xl0")
 }, {
@@ -42,9 +45,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_choun")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ya4ey")
 }],
 "loop": true,
 "name": &"basket-ball",
