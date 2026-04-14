@@ -3,54 +3,59 @@
 [ext_resource type="Texture2D" uid="uid://cgyhnbmphrm4y" path="res://sprites/bg/football-field.png" id="1_6pmjc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ttalb"]
+normal = Vector2(1, 0)
+distance = 434.0
 
 [node name="Field" type="Node2D" unique_id=1917929457]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1382740602]
-position = Vector2(570, 254.62497)
-scale = Vector2(0.97357553, 0.89687496)
+position = Vector2(424.8501, 247.70782)
+scale = Vector2(0.67112315, 0.585017)
 texture = ExtResource("1_6pmjc")
 
 [node name="WorldBoundaries" type="Node2D" parent="." unique_id=1759426190]
 
 [node name="Top" type="StaticBody2D" parent="WorldBoundaries" unique_id=1301665613]
-position = Vector2(587, 350)
+position = Vector2(405, 6)
 rotation = 3.1415927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Top" unique_id=707038877]
-position = Vector2(19.000013, 150)
+position = Vector2(-876.00006, -257.99994)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
 
 [node name="Right" type="StaticBody2D" parent="WorldBoundaries" unique_id=55201621]
-position = Vector2(1154, 411)
+position = Vector2(847, 258)
 rotation = 4.712389
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Right" unique_id=771570285]
+position = Vector2(-656, -424)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
 
 [node name="Left" type="StaticBody2D" parent="WorldBoundaries" unique_id=1870205092]
-position = Vector2(-15, 391)
+position = Vector2(-6, 306)
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Left" unique_id=735485314]
+position = Vector2(-547, -429)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
 
 [node name="Bottom" type="StaticBody2D" parent="WorldBoundaries" unique_id=1934597850]
-position = Vector2(599, 646)
+position = Vector2(415, 497)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/Bottom" unique_id=972012935]
-position = Vector2(-23, -22)
+position = Vector2(-833, -236)
 shape = SubResource("WorldBoundaryShape2D_ttalb")
 
 [node name="LeftGoalpost" type="StaticBody2D" parent="." unique_id=925378580]
-position = Vector2(82, 347)
+position = Vector2(-166, 340)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="LeftGoalpost" unique_id=884365309]
-polygon = PackedVector2Array(-12, -17, -28, -19, -46, -19, -95, 18, -101, 73, -57, 73, -12, 31)
+position = Vector2(285, -50)
+polygon = PackedVector2Array(-34, 4, -47, 2, -60, 3, -95, 26, -101, 69, -67, 70, -32, 40)
 
 [node name="RightGoalpost2" type="StaticBody2D" parent="." unique_id=303337519]
-position = Vector2(82, 347)
+position = Vector2(1404, 540)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RightGoalpost2" unique_id=1774041857]
-position = Vector2(1042, 4)
-polygon = PackedVector2Array(27, 12, -22, -24, -57, -24, -56, 29, -37, 50, -11, 73, 39, 70)
+position = Vector2(-611, -225)
+polygon = PackedVector2Array(35, 1, 0, -22, -27, -21, -28, 15, -16, 27, 3, 44, 42, 44)

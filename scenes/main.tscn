@@ -2,9 +2,54 @@
 
 [ext_resource type="Script" uid="uid://bcgnhveis3bh2" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://x3lqen7ummma" path="res://scenes/field.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dc6tnldlyfkgu" path="res://scenes/field.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bwp202u4yw1eg" path="res://scenes/control-panel.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ds17vh5xbvtiv" path="res://scenes/logger.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://cph555iwelon4" path="res://sprites/basket-ball/balls.png" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://pp50ypcgoxya" path="res://scenes/basket_ball.gd" id="7_o6xl0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(0, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(135, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(270, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(405, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(540, 123, 135, 134)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eb6dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6xl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tipki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya4ey")
+}],
+"loop": true,
+"name": &"basket-ball",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D" unique_id=622287307]
 script = ExtResource("1_sugp2")
@@ -12,9 +57,25 @@ script = ExtResource("1_sugp2")
 [node name="Field" parent="." unique_id=1917929457 instance=ExtResource("2_sugp2")]
 
 [node name="Child" parent="." unique_id=1883023373 instance=ExtResource("2_0wfyh")]
-position = Vector2(68, 533)
+position = Vector2(315, 344)
 
 [node name="ControlPanel" parent="." unique_id=278342775 instance=ExtResource("4_jyhfs")]
-initial_position = 1
+position = Vector2i(900, 44)
+size = Vector2i(200, 57)
 
 [node name="Logger" parent="." unique_id=1858505231 instance=ExtResource("5_tbgi4")]
+position = Vector2i(6, 515)
+size = Vector2i(836, 122)
+
+[node name="Basket-Ball" type="AnimatedSprite2D" parent="." unique_id=1981368785]
+position = Vector2(425, 318)
+scale = Vector2(0.43333334, 0.38059703)
+sprite_frames = SubResource("SpriteFrames_eb6dy")
+animation = &"basket-ball"
+script = ExtResource("7_o6xl0")
+
+[node name="CountLabel" type="Label" parent="Basket-Ball" unique_id=759282849]
+offset_left = -18.461538
+offset_top = 34.15686
+offset_right = 21.538462
+offset_bottom = 57.15686
