@@ -1,3 +1,52 @@
 [gd_scene format=3 uid="uid://dfbn5q6w1e3gf"]
 
-[node name="BasketBall" type="Node2D" unique_id=139959015]
+[ext_resource type="Texture2D" uid="uid://cph555iwelon4" path="res://sprites/basket-ball/balls.png" id="1_1tfs2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gfog"]
+atlas = ExtResource("1_1tfs2")
+region = Rect2(0, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpfyc"]
+atlas = ExtResource("1_1tfs2")
+region = Rect2(135, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfqxo"]
+atlas = ExtResource("1_1tfs2")
+region = Rect2(270, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p28de"]
+atlas = ExtResource("1_1tfs2")
+region = Rect2(405, 123, 135, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p48ff"]
+atlas = ExtResource("1_1tfs2")
+region = Rect2(540, 123, 135, 134)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjljo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gfog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpfyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfqxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p28de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p48ff")
+}],
+"loop": true,
+"name": &"basket-ball",
+"speed": 5.0
+}]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=334212700]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1069076742]
+sprite_frames = SubResource("SpriteFrames_tjljo")
+animation = &"basket-ball"
