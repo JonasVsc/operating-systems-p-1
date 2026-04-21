@@ -17,5 +17,4 @@ func log(msg: String):
 	var timestamp = "[%02d:%02d:%02d]" % [time.hour, time.minute, time.second];
 	var display_msg = timestamp + " " + msg;
 	new_log.emit.call_deferred(display_msg);
-	print(display_msg);
 	pass

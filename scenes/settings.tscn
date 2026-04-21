@@ -39,16 +39,6 @@ text = "Sistemas Operacionais: Projeto 1 "
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1875444027]
 layout_mode = 2
 
-[node name="HBallsContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1609725250]
-layout_mode = 2
-
-[node name="BallsLabel" type="Label" parent="CenterContainer/VBoxContainer/HBallsContainer" unique_id=347447978]
-layout_mode = 2
-text = "Bolas iniciais:"
-
-[node name="BallsInput" type="SpinBox" parent="CenterContainer/VBoxContainer/HBallsContainer" unique_id=110750630]
-layout_mode = 2
-
 [node name="HBasketContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2048633679]
 layout_mode = 2
 

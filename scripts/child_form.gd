@@ -12,12 +12,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func _on_cancel_button_pressed() -> void:
-	print("cancel pressed");
 	self.visible = false;
 
 
@@ -30,5 +29,4 @@ func _on_submit_button_pressed() -> void:
 	
 	Simulation.create_child(child_name, child_has_ball, child_tb, child_td);
 	
-	print("submit pressed");
 	self.visible = false;

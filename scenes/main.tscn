@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://brcivw2inplpf"]
 
 [ext_resource type="Script" uid="uid://bcgnhveis3bh2" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="PackedScene" uid="uid://cf5456limbntq" path="res://scenes/child.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dc6tnldlyfkgu" path="res://scenes/field.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bwp202u4yw1eg" path="res://scenes/control-panel.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ds17vh5xbvtiv" path="res://scenes/logger.tscn" id="5_tbgi4"]
@@ -56,19 +55,16 @@ script = ExtResource("1_sugp2")
 
 [node name="Field" parent="." unique_id=1917929457 instance=ExtResource("2_sugp2")]
 
-[node name="Child" parent="." unique_id=1883023373 instance=ExtResource("2_0wfyh")]
-position = Vector2(315, 344)
-
 [node name="ControlPanel" parent="." unique_id=278342775 instance=ExtResource("4_jyhfs")]
 position = Vector2i(900, 44)
 size = Vector2i(200, 57)
 
 [node name="Logger" parent="." unique_id=1858505231 instance=ExtResource("5_tbgi4")]
-position = Vector2i(6, 515)
+position = Vector2i(6, 417)
 size = Vector2i(836, 122)
 
 [node name="Basket-Ball" type="AnimatedSprite2D" parent="." unique_id=1981368785]
-position = Vector2(425, 318)
+position = Vector2(754, 235)
 scale = Vector2(0.43333334, 0.38059703)
 sprite_frames = SubResource("SpriteFrames_eb6dy")
 animation = &"basket-ball"

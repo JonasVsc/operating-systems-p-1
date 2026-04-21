@@ -59,3 +59,18 @@ position = Vector2(1404, 540)
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RightGoalpost2" unique_id=1774041857]
 position = Vector2(-611, -225)
 polygon = PackedVector2Array(35, 1, 0, -22, -27, -21, -28, 15, -16, 27, 3, 44, 42, 44)
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=1512297973]
+position = Vector2(424, 232)
+
+[node name="LeftTop" type="Node2D" parent="." unique_id=293841411]
+position = Vector2(102, 290)
+
+[node name="BottomRight" type="Node2D" parent="." unique_id=1769230055]
+position = Vector2(811, 476)
+
+[node name="QueuePickBall" type="Node2D" parent="." unique_id=1994826495]
+position = Vector2(699, 253)
+
+[node name="QueueLeaveBall" type="Node2D" parent="." unique_id=259951452]
+position = Vector2(749, 276)

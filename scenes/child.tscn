@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cf5456limbntq"]
 
 [ext_resource type="Texture2D" uid="uid://cryjl1qv3dx7q" path="res://sprites/children/child-m-spritesheet.png" id="1_8ggnl"]
+[ext_resource type="Script" uid="uid://duyrdwbr2jju0" path="res://scripts/child.gd" id="1_xoh2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggnl"]
 size = Vector2(37, 51)
@@ -260,6 +261,7 @@ _data = {
 }
 
 [node name="Child" type="CharacterBody2D" unique_id=1883023373]
+script = ExtResource("1_xoh2m")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=749151514]
 position = Vector2(0, -16)
