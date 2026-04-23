@@ -1,6 +1,5 @@
 extends Window
 
-@onready var child_name_input = $PanelContainer/VBoxContainer/FormContainer/ChildName/ChildNameInput
 @onready var child_tb_input = $PanelContainer/VBoxContainer/FormContainer/ChildTb/ChildTbInput
 @onready var child_td_input = $PanelContainer/VBoxContainer/FormContainer/ChildTd/ChildTdInput
 @onready var child_has_ball_input = $PanelContainer/VBoxContainer/FormContainer/ChildHasBall/ChildHasBallCheckbox
