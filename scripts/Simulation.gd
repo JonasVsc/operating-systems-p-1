@@ -66,9 +66,9 @@ func initialize(p_basket_capacity: int) -> void:
 	SimLogger.log("Simulação iniciada. Capacidade do cesto: %d" % [basket_capacity])
 
 
-func create_child(child_name: String, has_ball: bool, Tb_ms: float, Td_ms: float):
+func create_child(has_ball: bool, Tb_ms: float, Td_ms: float):
 	var data = {
-		"id": children_id, "name": child_name,
+		"id": children_id,
 		"has_ball": has_ball,
 		"Tb": Tb_ms, "Td": Td_ms,
 		"status": "IDLE",
@@ -87,7 +87,7 @@ func create_child(child_name: String, has_ball: bool, Tb_ms: float, Td_ms: float
 	var thread = Thread.new();
 	thread.start(_child_thread.bind(data));
 	
-	var log_msg = "Nova Criança: ID: %d, Name: %s, Tb: %02ds, Td: %02ds, Has_Ball: %s" % [children_id, child_name, Tb_ms / 1000, Td_ms  / 1000, "Yes" if has_ball else "No"];
+	var log_msg = "Nova Criança: ID: %d, Tb: %02ds, Td: %02ds, Has_Ball: %s" % [children_id, Tb_ms / 1000, Td_ms  / 1000, "Yes" if has_ball else "No"];
 	SimLogger.log(log_msg);
 	children_id += 1;
 
@@ -107,7 +107,7 @@ func _child_thread(data: Dictionary) -> void:
 		if has_ball:
 			# ── BRINCANDO ─────────────────────────────────────────
 			_set_status(data, "BRINCANDO")
-			SimLogger.log("%s: Começou a brincar." % data["name"])
+			SimLogger.log("%s: Começou a brincar." % data["id"])
 			var start := Time.get_ticks_msec()
 			var last  := start
 			while Time.get_ticks_msec() - start < data["Tb"] and running:
@@ -125,7 +125,7 @@ func _child_thread(data: Dictionary) -> void:
 
 			# ── AG_ESPACO: fase 1 — chegar ao cesto ───────────────
 			_set_status(data, "AG_ESPACO")
-			SimLogger.log("%s: Indo ao cesto para colocar a bola..." % data["name"])
+			SimLogger.log("%s: Indo ao cesto para colocar a bola..." % data["id"])
 
 			# Move em direção à base da fila SEM entrar nela ainda
 			last = Time.get_ticks_msec()
@@ -139,7 +139,7 @@ func _child_thread(data: Dictionary) -> void:
 
 			# Entra na fila somente ao chegar — prioridade por chegada
 			_join_queue(queue_espaco, data["id"])
-			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["name"], _get_queue_index(queue_espaco, data["id"])])
+			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["id"], _get_queue_index(queue_espaco, data["id"])])
 
 			# ── AG_ESPACO: fase 2 — aguarda espaço, anda com a fila
 			last = Time.get_ticks_msec()
@@ -158,12 +158,12 @@ func _child_thread(data: Dictionary) -> void:
 
 			available_balls_semaphore.post()
 			_leave_queue(queue_espaco, data["id"])
-			SimLogger.log("%s: Colocou a bola. [Cesto: %d/%d]" % [data["name"], snap, basket_capacity])
+			SimLogger.log("%s: Colocou a bola. [Cesto: %d/%d]" % [data["id"], snap, basket_capacity])
 			has_ball = false
 
 			# ── DESCANSANDO ───────────────────────────────────────
 			_set_status(data, "DESCANSANDO")
-			SimLogger.log("%s: Descansando..." % data["name"])
+			SimLogger.log("%s: Descansando..." % data["id"])
 			var rest_target := Vector2(
 				randf_range(102.0, 811.0),
 				randf_range(290.0, 476.0)
@@ -179,7 +179,7 @@ func _child_thread(data: Dictionary) -> void:
 		else:
 			# ── AG_CESTO: fase 1 — chegar ao cesto ───────────────
 			_set_status(data, "AG_CESTO")
-			SimLogger.log("%s: Indo ao cesto buscar uma bola..." % data["name"])
+			SimLogger.log("%s: Indo ao cesto buscar uma bola..." % data["id"])
 
 			# Move em direção à base da fila SEM entrar nela ainda
 			var last := Time.get_ticks_msec()
@@ -193,7 +193,7 @@ func _child_thread(data: Dictionary) -> void:
 
 			# Entra na fila somente ao chegar — prioridade por chegada
 			_join_queue(queue_cesto, data["id"])
-			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["name"], _get_queue_index(queue_cesto, data["id"])])
+			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["id"], _get_queue_index(queue_cesto, data["id"])])
 
 			# ── AG_CESTO: fase 2 — aguarda bola, anda com a fila ──
 			last = Time.get_ticks_msec()
@@ -212,11 +212,11 @@ func _child_thread(data: Dictionary) -> void:
 
 			available_space_semaphore.post()
 			_leave_queue(queue_cesto, data["id"])
-			SimLogger.log("%s: Pegou uma bola! [Cesto: %d/%d]" % [data["name"], snap, basket_capacity])
+			SimLogger.log("%s: Pegou uma bola! [Cesto: %d/%d]" % [data["id"], snap, basket_capacity])
 			has_ball = true
 
 	_set_status(data, "IDLE")
-	SimLogger.log("%s: Thread encerrada." % data["name"])
+	SimLogger.log("%s: Thread encerrada." % data["id"])
 
 
 const ARRIVAL_THRESHOLD := 5.0

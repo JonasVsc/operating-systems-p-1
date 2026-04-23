@@ -277,3 +277,9 @@ shape = SubResource("RectangleShape2D_8ggnl")
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=1866931237]
 libraries/ = SubResource("AnimationLibrary_3ejsn")
+
+[node name="Label" type="Label" parent="." unique_id=453311626]
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -35.0

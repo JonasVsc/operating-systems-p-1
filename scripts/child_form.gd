@@ -22,11 +22,10 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_submit_button_pressed() -> void:
 	
-	var child_name = child_name_input.text;
 	var child_tb = child_tb_input.value * 1000;
 	var child_td = child_td_input.value * 1000;
 	var child_has_ball = child_has_ball_input.button_pressed;
 	
-	Simulation.create_child(child_name, child_has_ball, child_tb, child_td);
+	Simulation.create_child(child_has_ball, child_tb, child_td);
 	
 	self.visible = false;

@@ -1,8 +1,10 @@
 extends Node2D
 
 var data: Dictionary
+@onready var _id_label: Label = $Label  # id gerado automaticamente
 
 func _ready() -> void:
+	_id_label.text = "%d" % data["id"] 
 	# Fade-in: começa invisível e vai para opaco em 0.8s
 	modulate.a = 0.0
 	var tween := create_tween()
