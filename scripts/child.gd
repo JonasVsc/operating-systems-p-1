@@ -3,6 +3,9 @@ extends Node2D
 var data: Dictionary
 @onready var _id_label: Label = $Label  # id gerado automaticamente
 
+var _last_anim = ""
+@onready var _anim = $Animation
+
 func _ready() -> void:
 	_id_label.text = "%d" % data["id"] 
 	# Fade-in: começa invisível e vai para opaco em 0.8s
@@ -23,3 +26,18 @@ func _process(_delta):
 	Simulation.ui_mutex.unlock()
 	
 	position = Vector2(px, py);
+	
+	var status: String = data["status"]
+
+	var target_anim: String
+	match status:
+		"BRINCANDO":
+			target_anim = "running"
+		"DESCANSANDO":
+			target_anim = "idle"
+		"AG_ESPACO", "AG_CESTO":
+			target_anim = "RESET"
+
+	if target_anim != _last_anim:
+		_anim.play(target_anim)
+		_last_anim = target_anim
