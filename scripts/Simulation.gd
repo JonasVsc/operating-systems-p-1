@@ -139,6 +139,7 @@ func _child_thread(data: Dictionary) -> void:
 
 			# Entra na fila somente ao chegar — prioridade por chegada
 			_join_queue(queue_espaco, data["id"])
+			_set_status(data, "BLOQUEADO_AGUARDANDO_CESTO")
 			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["id"], _get_queue_index(queue_espaco, data["id"])])
 
 			# ── AG_ESPACO: fase 2 — aguarda espaço, anda com a fila
@@ -193,6 +194,7 @@ func _child_thread(data: Dictionary) -> void:
 
 			# Entra na fila somente ao chegar — prioridade por chegada
 			_join_queue(queue_cesto, data["id"])
+			_set_status(data, "BLOQUEADO_AGUARDANDO_BOLA")
 			SimLogger.log("%s: Entrou na fila do cesto (pos %d)." % [data["id"], _get_queue_index(queue_cesto, data["id"])])
 
 			# ── AG_CESTO: fase 2 — aguarda bola, anda com a fila ──

@@ -6,6 +6,11 @@ var data: Dictionary
 var _last_anim = ""
 @onready var _anim = $Animation
 
+@onready var _soccer_ball = $SoccerBall
+
+@onready var _sleeping = $Sleeping
+
+
 func _ready() -> void:
 	_id_label.text = "%d" % data["id"] 
 	# Fade-in: começa invisível e vai para opaco em 0.8s
@@ -28,6 +33,16 @@ func _process(_delta):
 	position = Vector2(px, py);
 	
 	var status: String = data["status"]
+	
+	if status == "BRINCANDO" || status == "BLOQUEADO_AGUARDANDO_CESTO" || status == "AG_ESPACO":
+		_soccer_ball.visible = true
+	else:
+		_soccer_ball.visible = false
+		
+	if status == "BLOQUEADO_AGUARDANDO_BOLA" || status == "BLOQUEADO_AGUARDANDO_CESTO":
+		_sleeping.visible = true
+	else:
+		_sleeping.visible = false
 
 	var target_anim: String
 	match status:
@@ -35,7 +50,13 @@ func _process(_delta):
 			target_anim = "running"
 		"DESCANSANDO":
 			target_anim = "idle"
-		"AG_ESPACO", "AG_CESTO":
+		"AG_ESPACO":
+			target_anim = "running_left" 
+		"AG_CESTO":
+			target_anim = "running_right"
+		"BLOQUEADO_AGUARDANDO_CESTO":
+			target_anim = "RESET"
+		"BLOQUEADO_AGUARDANDO_BOLA":
 			target_anim = "RESET"
 
 	if target_anim != _last_anim:

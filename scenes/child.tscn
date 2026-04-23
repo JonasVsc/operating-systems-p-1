@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cryjl1qv3dx7q" path="res://sprites/children/child-m-spritesheet.png" id="1_8ggnl"]
 [ext_resource type="Script" uid="uid://duyrdwbr2jju0" path="res://scripts/child.gd" id="1_xoh2m"]
+[ext_resource type="Texture2D" uid="uid://5dgn6qvnxacs" path="res://sprites/basket-ball/soccer-ball.png" id="3_3ejsn"]
+[ext_resource type="Texture2D" uid="uid://cc2a4ahr2nb08" path="res://sprites/children/sleeping.png" id="4_qapw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggnl"]
 size = Vector2(37, 51)
@@ -272,6 +274,7 @@ vframes = 8
 frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1781625924]
+visible = false
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_8ggnl")
 
@@ -279,7 +282,17 @@ shape = SubResource("RectangleShape2D_8ggnl")
 libraries/ = SubResource("AnimationLibrary_3ejsn")
 
 [node name="Label" type="Label" parent="." unique_id=453311626]
-offset_left = -20.0
-offset_top = -58.0
-offset_right = 20.0
-offset_bottom = -35.0
+offset_left = -21.0
+offset_top = -59.0
+offset_right = 19.0
+offset_bottom = -36.0
+
+[node name="SoccerBall" type="Sprite2D" parent="." unique_id=1970525446]
+position = Vector2(-10.000001, 11)
+scale = Vector2(1.735069, 1.7906253)
+texture = ExtResource("3_3ejsn")
+
+[node name="Sleeping" type="Sprite2D" parent="." unique_id=1975013535]
+position = Vector2(17, -44)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("4_qapw4")
