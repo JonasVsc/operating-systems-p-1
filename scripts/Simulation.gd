@@ -144,12 +144,17 @@ func _child_thread(data: Dictionary) -> void:
 
 			# ── AG_ESPACO: fase 2 — aguarda espaço, anda com a fila
 			last = Time.get_ticks_msec()
-			while not available_space_semaphore.try_wait() and running:
+			while running:
 				var now := Time.get_ticks_msec()
 				var dt  := clampf((now - last) / 1000.0, 0.0, 0.05)
 				last = now
 				var basket_target := _queue_position(queue_espaco, data["id"], false)
 				_move_toward(data, basket_target, dt)
+				
+				# Só a primeira da fila tenta o semáforo
+				if _get_queue_index(queue_espaco, data["id"]) == 0:
+					if available_space_semaphore.try_wait():
+						break
 				OS.delay_usec(8000)
 
 			basket_mutex.lock()
@@ -199,12 +204,17 @@ func _child_thread(data: Dictionary) -> void:
 
 			# ── AG_CESTO: fase 2 — aguarda bola, anda com a fila ──
 			last = Time.get_ticks_msec()
-			while not available_balls_semaphore.try_wait() and running:
+			while running:
 				var now := Time.get_ticks_msec()
 				var dt  := clampf((now - last) / 1000.0, 0.0, 0.05)
 				last = now
 				var cesto_target := _queue_position(queue_cesto, data["id"], true)
 				_move_toward(data, cesto_target, dt)
+				
+				# Só a primeira da fila tenta o semáforo
+				if _get_queue_index(queue_cesto, data["id"]) == 0:
+					if available_balls_semaphore.try_wait():
+						break
 				OS.delay_usec(8000)
 
 			basket_mutex.lock()
