@@ -60,7 +60,7 @@ position = Vector2i(900, 44)
 size = Vector2i(200, 57)
 
 [node name="Logger" parent="." unique_id=1858505231 instance=ExtResource("5_tbgi4")]
-position = Vector2i(6, 417)
+position = Vector2i(6, 379)
 size = Vector2i(836, 122)
 
 [node name="Basket-Ball" type="AnimatedSprite2D" parent="." unique_id=1981368785]
@@ -71,7 +71,8 @@ animation = &"basket-ball"
 script = ExtResource("7_o6xl0")
 
 [node name="CountLabel" type="Label" parent="Basket-Ball" unique_id=759282849]
-offset_left = -18.461538
-offset_top = 34.15686
-offset_right = 21.538462
-offset_bottom = 57.15686
+offset_left = -36.923077
+offset_top = 15.764719
+offset_right = 46.153828
+offset_bottom = 59.78431
+theme_override_font_sizes/font_size = 32

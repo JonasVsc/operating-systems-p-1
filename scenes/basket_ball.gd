@@ -21,3 +21,4 @@ func _process(_delta: float) -> void:
 	frame = clamp(int(fill_ratio * 5), 0, 4)
 
 	count_label.text = "%d / %d" % [current, capacity]
+	

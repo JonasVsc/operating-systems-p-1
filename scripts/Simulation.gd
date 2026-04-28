@@ -260,7 +260,7 @@ func _move_toward(data: Dictionary, target: Vector2, dt: float) -> void:
 	var flip: bool = data["flip_h"];
 	if abs(target.x - pos.x) > 2.0:
 		flip = target.x < pos.x
-
+	
 	ui_mutex.lock()
 	data["px"]     = newpos.x
 	data["py"]     = newpos.y
